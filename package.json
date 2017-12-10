@@ -1,7 +1,7 @@
 {
   "name": "favorites",
   "main": "./lib/main.js",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Quickly open favorite files",
   "keywords": [
     "favorites",
