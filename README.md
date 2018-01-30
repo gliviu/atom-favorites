@@ -1,12 +1,25 @@
 favorites
 ==========
-Adds **File->Favorites** menu item to manage most accessed files.
+Registers **File->Favorites** menu with useful commands to access favorite files and folders.
 
-Atom commands are created for each favorite. Use **Command Palette** (ctrl-shift-p) or assign them to key-bindings for fast access.
+**Install**
 
-**Install** ```apm install favorites```
+```apm install favorites```
 
+**Configuration example**
 
+```cson
+favorites:
+  paths: [
+    "topic:Dev"
+    "/main.js"
+    "/README.md"
+    "topic:Other"
+    "/notes.txt"
+    "/downloads"
+  ]
+
+```
 **License** [MIT](https://github.com/gliviu/atom-favorites/blob/master/LICENSE)
 
 [Issues and suggestions](https://github.com/gliviu/atom-favorites/issues)
