@@ -1,44 +1,56 @@
 'use babel'
 import common from '../lib/common'
-
+const DELIM='|'
 describe("Favorite config parser", ()=>{
-  it("handles regular favorites with no properties", ()=>{
+  it("parses regular favorites with no properties", ()=>{
     const config = common.parseFavoriteConfig('/path1 /path2/p4/x.js')
     expect(config.isTopic).toBe(false)
     expect(config.hasKeymap).toBe(false)
     expect(config.fav).toBe('/path1 /path2/p4/x.js')
   })
-  it("handles windows paths", ()=>{
+  it("parses windows paths", ()=>{
     const config = common.parseFavoriteConfig('d:\\path1 \\path2\\p4\\x.js')
     expect(config.isTopic).toBe(false)
     expect(config.hasKeymap).toBe(false)
     expect(config.fav).toBe('d:\\path1 \\path2\\p4\\x.js')
   })
-  it("handles topics", ()=>{
+  it("parses topics", ()=>{
     const config = common.parseFavoriteConfig('topic:My topic')
     expect(config.isTopic).toBe(true)
     expect(config.topic).toBe('My topic')
   })
-  it("handles favorites with keymap", ()=>{
-    const config = common.parseFavoriteConfig('key:alt-shift-ctrl-w x y z#/P1/p2 /F*%$alt-e x y z#&*:-abc-cde 1 2.txt')
+  it("parses names", ()=>{
+    const config = common.parseFavoriteConfig(`name:new name${DELIM}|/x/b/x`)
+    expect(config.isRenamed).toBe(true)
+    expect(config.newName).toBe('new name')
+  })
+  it("parses favorites with keymap", ()=>{
+    const config = common.parseFavoriteConfig(`key:alt-shift-ctrl-w x y z${DELIM}/P1/p2 /F*%$alt-e x y z#&*:-abc-cde 1 2.txt`)
     expect(config.hasKeymap).toBe(true)
     expect(config.keymap).toBe('alt-shift-ctrl-w x y z')
     expect(config.fav).toBe('/P1/p2 /F*%$alt-e x y z#&*:-abc-cde 1 2.txt')
   })
-  it("handles windows favorites with keymap", ()=>{
-    const config = common.parseFavoriteConfig('key:alt-shift-ctrl-w x y z#d:\\a\c D\$$2##.,tdde')
+  it("parses windows favorites with keymap", ()=>{
+    const config = common.parseFavoriteConfig(`key:alt-shift-ctrl-w x y z${DELIM}d:\\a\c D\$$2##.,tdde`)
     expect(config.hasKeymap).toBe(true)
     expect(config.keymap).toBe('alt-shift-ctrl-w x y z')
     expect(config.fav).toBe('d:\\a\c D\$$2##.,tdde')
   })
-  it("handles keymaps with one key", ()=>{
-    const config = common.parseFavoriteConfig('key:pageup#/a/b/c')
+  it("parses keymaps with one key", ()=>{
+    const config = common.parseFavoriteConfig(`key:pageup${DELIM}/a/b/c`)
     expect(config.hasKeymap).toBe(true)
     expect(config.keymap).toBe('pageup')
     expect(config.fav).toBe('/a/b/c')
   })
+  it("parses multiple properties", ()=>{
+    const config = common.parseFavoriteConfig(`name:new name${DELIM}key:alt-r${DELIM}/x/b/x`)
+    expect(config.isRenamed).toBe(true)
+    expect(config.newName).toBe('new name')
+    expect(config.hasKeymap).toBe(true)
+    expect(config.keymap).toBe('alt-r')
+  })
   it("allows favorite path containing config delimiter", ()=>{
-    const config = common.parseFavoriteConfig('/a/b#c#d.txt')
-    expect(config.fav).toBe('/a/b#c#d.txt')
+    const config = common.parseFavoriteConfig(`/a/b${DELIM}c${DELIM}d.txt`)
+    expect(config.fav).toBe(`/a/b${DELIM}c${DELIM}d.txt`)
   })
 })

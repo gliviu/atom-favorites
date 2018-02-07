@@ -13,10 +13,10 @@ favorites:
   paths: [
     "topic:Dev"
     "/main.js"
-    "/README.md"
+    "name:readme|/README.md"
     "topic:Other"
-    "/notes.txt"
-    "/downloads"
+    "key:alt-n|/notes.txt"
+    "key:alt-d|/downloads"
   ]
 
 ```
