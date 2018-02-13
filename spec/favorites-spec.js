@@ -1,6 +1,6 @@
 'use babel'
 import common from '../lib/common'
-const DELIM='|'
+const DELIM=common.CONFIG_DELIMITER
 describe("Favorite config parser", ()=>{
   it("parses regular favorites with no properties", ()=>{
     const config = common.parseFavoriteConfig('/path1 /path2/p4/x.js')
@@ -20,7 +20,7 @@ describe("Favorite config parser", ()=>{
     expect(config.topic).toBe('My topic')
   })
   it("parses names", ()=>{
-    const config = common.parseFavoriteConfig(`name:new name${DELIM}|/x/b/x`)
+    const config = common.parseFavoriteConfig(`name:new name${DELIM}/x/b/x`)
     expect(config.isRenamed).toBe(true)
     expect(config.newName).toBe('new name')
   })
@@ -43,14 +43,22 @@ describe("Favorite config parser", ()=>{
     expect(config.fav).toBe('/a/b/c')
   })
   it("parses multiple properties", ()=>{
-    const config = common.parseFavoriteConfig(`name:new name${DELIM}key:alt-r${DELIM}/x/b/x`)
+    const config = common.parseFavoriteConfig(`name:new name${DELIM}/x/b/x${DELIM}key:alt-r`)
     expect(config.isRenamed).toBe(true)
     expect(config.newName).toBe('new name')
     expect(config.hasKeymap).toBe(true)
     expect(config.keymap).toBe('alt-r')
   })
-  it("allows favorite path containing config delimiter", ()=>{
-    const config = common.parseFavoriteConfig(`/a/b${DELIM}c${DELIM}d.txt`)
+  it("allows favorite path containing config delimiter escape", ()=>{
+    const config = common.parseFavoriteConfig(`name:xx${DELIM}${DELIM}yy${DELIM}/a/b${DELIM}${DELIM}c${DELIM}${DELIM}d.txt`)
+    expect(config.isRenamed).toBe(true)
+    expect(config.newName).toBe('xx|yy')
     expect(config.fav).toBe(`/a/b${DELIM}c${DELIM}d.txt`)
+  })
+  it("ignores wrong properties", ()=>{
+    const config = common.parseFavoriteConfig(`nameXA:new name${DELIM}/x/b/x${DELIM}keyEEE:alt-r`)
+    expect(config.isRenamed).toBe(false)
+    expect(config.hasKeymap).toBe(false)
+    expect(config.fav).toBe('/x/b/x')
   })
 })
