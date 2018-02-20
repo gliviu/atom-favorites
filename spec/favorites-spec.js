@@ -9,6 +9,7 @@ describe("Favorite config parser", ()=>{
     expect(config.fav).toBe('/path1 /path2/p4/x.js')
   })
   it("parses windows paths", ()=>{
+    if(!common.ISWIN) return
     const config = common.parseFavoriteConfig('d:\\path1 \\path2\\p4\\x.js')
     expect(config.isTopic).toBe(false)
     expect(config.hasKeymap).toBe(false)
@@ -31,6 +32,7 @@ describe("Favorite config parser", ()=>{
     expect(config.fav).toBe('/P1/p2 /F*%$alt-e x y z#&*:-abc-cde 1 2.txt')
   })
   it("parses windows favorites with keymap", ()=>{
+    if(!common.ISWIN) return
     const config = common.parseFavoriteConfig(`key:alt-shift-ctrl-w x y z${DELIM}d:\\a\c D\$$2##.,tdde`)
     expect(config.hasKeymap).toBe(true)
     expect(config.keymap).toBe('alt-shift-ctrl-w x y z')
