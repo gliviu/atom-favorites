@@ -6,10 +6,11 @@ Registers **File->Favorites** menu with useful commands to access favorite files
 
 ```apm install favorites```
 
-**Configuration example**
+**Settings**
 
 ```cson
 favorites:
+  showInCommandPalette: false
   paths: [
     "topic:Dev"
     "/main.js"
@@ -20,6 +21,13 @@ favorites:
   ]
 
 ```
+Options
+* showInCommandPalette - show/hide favorites in command palette (defaults to false)
+
+Known Issues
+* Manually adding paths in config.cson may cause 'Path not found in tree view: ...' errors. Make sure favorites are always added with 'Add to favorites' command.
+
+
 **License** [MIT](https://github.com/gliviu/atom-favorites/blob/master/LICENSE)
 
 [Issues and suggestions](https://github.com/gliviu/atom-favorites/issues)
