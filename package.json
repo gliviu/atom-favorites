@@ -1,7 +1,7 @@
 {
   "name": "favorites",
   "main": "./lib/main.js",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Quickly open favorite files and folders",
   "keywords": [
     "favorites",
@@ -15,6 +15,5 @@
   "engines": {
     "atom": ">1.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
