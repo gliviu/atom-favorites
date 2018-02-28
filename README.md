@@ -1,6 +1,8 @@
 favorites
 ==========
-Registers **File->Favorites** menu with useful commands to access favorite files and folders.
+Registers **File->Favorites** menu with commands for accessing files and folders of choice.
+
+![src.png](scr.png)
 
 **Install**
 
@@ -10,22 +12,21 @@ Registers **File->Favorites** menu with useful commands to access favorite files
 
 ```cson
 favorites:
-  showInCommandPalette: false
   paths: [
     "topic:Dev"
     "/main.js"
-    "name:readme|/README.md"
+    "/README.md"
     "topic:Other"
-    "key:alt-n|/notes.txt"
-    "key:alt-d|/downloads"
+    "key:alt-n|name:Notes|/notes.txt"
+    "key:alt-d|/Downloads"
   ]
-
+  showInCommandPalette: false
 ```
 Options
 * showInCommandPalette - show/hide favorites in command palette (defaults to false)
 
 Known Issues
-* Manually adding paths in config.cson may cause 'Path not found in tree view: ...' errors. Make sure favorites are always added with 'Add to favorites' command.
+* Manually adding paths in config.cson may cause 'Path not found in tree view' errors due to wrong case or other mismatches. Make sure favorites are always added with 'Add to favorites' command.
 
 
 **License** [MIT](https://github.com/gliviu/atom-favorites/blob/master/LICENSE)
