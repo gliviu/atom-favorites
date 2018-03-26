@@ -21,9 +21,11 @@ favorites:
     "key:alt-d|/Downloads"
   ]
   showInCommandPalette: false
+  showInContextMenus: true
 ```
 Options
 * showInCommandPalette - show/hide favorites in command palette (defaults to false)
+* showInContextMenus - show/hide favorites in tree-view and editor context menus (defaults to true)
 
 Known Issues
 * Manually adding paths in config.cson may cause 'Path not found in tree view' errors due to wrong case or other mismatches. Make sure favorites are always added with 'Add to favorites' command.
