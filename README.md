@@ -20,16 +20,17 @@ favorites:
     "key:alt-n|name:Notes|/notes.txt"
     "key:alt-d|/Downloads"
   ]
+  menuLocation: "File/Fa&vorites"
   showInCommandPalette: false
   showInContextMenus: true
 ```
-Options
+**Options**
+* menuLocation - Location of favorites menu (defaults to 'File/Fa&vorites').
 * showInCommandPalette - show/hide favorites in command palette (defaults to false)
 * showInContextMenus - show/hide favorites in tree-view and editor context menus (defaults to true)
 
-Known Issues
+**Known Issues**
 * Manually adding paths in config.cson may cause 'Path not found in tree view' errors due to wrong case or other mismatches. Make sure favorites are always added with 'Add to favorites' command.
-
 
 **License** [MIT](https://github.com/gliviu/atom-favorites/blob/master/LICENSE)
 
