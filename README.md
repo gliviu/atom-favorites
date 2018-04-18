@@ -1,8 +1,6 @@
 favorites
 ==========
-Registers **File->Favorites** menu with commands for accessing files and folders of choice.
-
-![src.png](scr.png)
+Registers ```File->Favorites``` menu with commands that allows you to create shortcuts to favorite files and folders.
 
 **Install**
 
@@ -10,28 +8,41 @@ Registers **File->Favorites** menu with commands for accessing files and folders
 
 **Settings**
 
+```File->Favorites->Configure``` will direct to settings section in ```config.cson```.
+
 ```cson
 favorites:
   paths: [
-    "topic:Dev"
+    "topic:Dev"               # Define category
     "/main.js"
     "/README.md"
     "topic:Other"
-    "key:alt-n|name:Notes|/notes.txt"
-    "key:alt-d|/Downloads"
+    "name:Note&s|/notes.txt"  # Rename favorite. Specify accelerator key with '&'
+    "key:alt-d|/Downloads"    # Assign shortcut key
+    "topic:Scripts"
+    "name:diff|key:alt-s d|/scripts/diff.sh"
+    "name:undiff|key:alt-s u|/scripts/undiff.sh"
   ]
-  menuLocation: "File/Fa&vorites"
+  menuLocation: "F&avorites"
   showInCommandPalette: false
   showInContextMenus: true
 ```
+
+![src.png](scr.png)
+
+See [Atom key combinations](https://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/#key-combinations) for more key-binding details.
+
 **Options**
-* menuLocation - Location of favorites menu (defaults to 'File/Fa&vorites').
+* menuLocation - Location of favorites menu (defaults to 'File/Fa&vorites')
 * showInCommandPalette - show/hide favorites in command palette (defaults to false)
 * showInContextMenus - show/hide favorites in tree-view and editor context menus (defaults to true)
 
 **Known Issues**
-* Manually adding paths in config.cson may cause 'Path not found in tree view' errors due to wrong case or other mismatches. Make sure favorites are always added with 'Add to favorites' command.
+* Manually adding paths in config.cson may cause ```Path not found in tree view``` errors due to wrong case or other mismatches. Make sure favorites are always added with 'Add to favorites' command.
 
-**License** [MIT](https://github.com/gliviu/atom-favorites/blob/master/LICENSE)
+
+**License**
+
+[MIT](https://github.com/gliviu/atom-favorites/blob/master/LICENSE)
 
 [Issues and suggestions](https://github.com/gliviu/atom-favorites/issues)
